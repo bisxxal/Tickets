@@ -3,7 +3,7 @@ import { headers } from 'next/headers'
 import { clerkClient, WebhookEvent } from '@clerk/nextjs/server'
 import { NextResponse } from 'next/server'
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
-import { CreateCategoryParams, CreateUserParams, UpdateUserParams } from '@/types'
+import { CreateUserParams, UpdateUserParams } from '@/types'
 
 export async function POST(req: Request) { 
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET

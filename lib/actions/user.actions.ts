@@ -11,7 +11,11 @@ export async function createUser(user: CreateUserParams) {
     try {
       await connectToDatabase()
   
+      console.log(" beforeuser", user);  
+     
+      
       const newUser = await User.create(user)
+ console.log(" afteruser", newUser);  
       return JSON.parse(JSON.stringify(newUser))
     } catch (error) { 
     console.log("eroor in create user route" , error);
