@@ -1,6 +1,6 @@
 import EventForm from "@/components/orginalcom/EventForm"; 
 import { auth } from "@clerk/nextjs/server";
-function CreateEvent(p0: { event: { imageUrl: string; title: string; description: string; location: string; startDateTime: Date; endDateTime: Date; categoryId: string; price: string; isFree: boolean; url: string; }; userId: string; path: string; }) {
+function CreateEvent() {
 
   const { sessionClaims } = auth();
 
