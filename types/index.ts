@@ -14,10 +14,9 @@ export type CreateUserParams = {
     username: string
     photo: string
   }
-  
-  // ====== EVENT PARAMS
+   
   export type CreateEventParams = {
-    userId: string
+    userId: string 
     event: {
       title: string
       description: string
