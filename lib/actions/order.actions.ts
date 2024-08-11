@@ -4,8 +4,7 @@ import { connectToDatabase } from "../database"
 import Order from "../models/order.model"
 import Stripe from 'stripe' 
 import Event from "../models/event.model"
-import User from "../models/user.models"
-import { redirect } from "next/navigation";
+import User from "../models/user.models" 
 
 export async function cheakOutOrder(order: CheckoutOrderParams) {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
