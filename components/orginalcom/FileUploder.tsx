@@ -7,6 +7,7 @@ import { generateClientDropzoneAccept } from 'uploadthing/client'
 
 import { Button } from '@/components/ui/button'
 import { convertFileToUrl } from '@/lib/utils'
+import { DocumentUpload } from 'iconsax-react'
 
 type FileUploaderProps = {
   onFieldChange: (url: string) => void
@@ -49,11 +50,11 @@ export function FileUploader({ onFieldChange , imageUrl , setFiles }: FileUpload
           />
         </div>
       ) : (
-        <div className="flex-center flex-col py-5  text-grey-500">
-          {/* <img src="/assets/icons/upload.svg" width={77} height={77} alt="file upload" /> */}
-          <h3 className="mb-2 mt-2">Drag photo here</h3>
+        <div className="flex flex-col py-5 items-center justify-center  text-grey-500"> 
+        <DocumentUpload size={34} color="#d9e3f0"/>
+          <h3 className="mb-2  mt-2">Drag photo here</h3>
           <p className="p-medium-12 mb-4">SVG, PNG, JPG</p>
-          <Button type="button" className="rounded-full bg-[#e41f7b] ">
+          <Button type="button" className=" hover:bg-pink-600 rounded-full bg-[#e41f7b] ">
             Select from computer
           </Button>
         </div>

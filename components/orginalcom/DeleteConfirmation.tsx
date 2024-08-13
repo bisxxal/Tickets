@@ -32,7 +32,7 @@ export const DeleteConfirmation = ({ eventId }: { eventId: string }) => {
         />
       </AlertDialogTrigger>
 
-      <AlertDialogContent className=" bg-[#2e2e2e67] backdrop-blur-[15px] rounded-2xl  border-none overflow-hidden ">
+      <AlertDialogContent className=" bg-[#c9c1c132] text-white backdrop-blur-[10px] rounded-3xl border-none overflow-hidden ">
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure you want to delete?</AlertDialogTitle>
           <AlertDialogDescription className="p-regular-16 text-grey-600">

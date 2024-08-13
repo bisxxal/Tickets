@@ -26,7 +26,7 @@ import { Checkbox } from "../ui/checkbox"
 import { useUploadThing } from "@/lib/uploadthing" 
 import { useRouter } from "next/navigation"
 import { createEvent, updateEvent } from "@/lib/actions/event.actions"
-import { Category, Link1, Location } from 'iconsax-react';
+import { Calendar, Category, Link1, Location } from 'iconsax-react';
 import { IEvent } from "@/lib/models/event.model"
 type EventFormProps = {
   userId: string
@@ -112,7 +112,7 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
   return (
     <Form {...form}>
     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-3">
-      <div className=" flex flex-col gap-3">
+      <div className=" flex max-lg:flex-col gap-3">
       <FormField
         control={form.control}
         name="title"
@@ -120,7 +120,7 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
           <FormItem className=" w-full rounded-xl bg-[#0d0f14]  ">
             
             <FormControl>
-              <Input className=" border-none" placeholder="Event Title" {...field} />
+              <Input className=" placeholder:text-zinc-400 border-none" placeholder="Event Title" {...field} />
             </FormControl>
            
             <FormMessage />
@@ -131,7 +131,7 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
         control={form.control}
         name="categoryId"
         render={({ field }) => (
-          <FormItem className=" w-[250px] flex items-center bg-[#0d0f14] gap-1 px-3 rounded-xl">
+          <FormItem className=" w-[290px] max-lg:w-full  flex items-center bg-[#0d0f14] gap-1 px-3 rounded-xl">
             <Category color="#d9e3f0" variant="TwoTone"/>
             <FormControl className=" border-none " >
             <DropDown onChangeHandeler={field.onChange} value={field.value} />
@@ -151,7 +151,7 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
               <FormItem className=" w-full bg-[#0d0f14] rounded-xl  ">
                 
                 <FormControl>
-                <Textarea placeholder="description" {...field} />
+                <Textarea className="placeholder:text-zinc-400 " placeholder="description" {...field} />
                 </FormControl>
               
                 <FormMessage />
@@ -179,12 +179,12 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
         control={form.control}
         name="location"
         render={({ field }) => (
-          <FormItem className=" w-full flex items-center bg-[#00000061] gap-1 px-3 rounded-xl">
+          <FormItem className=" w-full flex items-center bg-[#0d0f14] gap-1 px-3 rounded-xl">
             
             <Location color="#d9e3f0" variant="TwoTone"/>
             <FormControl>
               
-              <Input className=" border-none " placeholder="Event Location " {...field} />
+              <Input className="placeholder:text-zinc-400  border-none " placeholder="Event Location " {...field} />
             </FormControl>
            
             <FormMessage />
@@ -194,10 +194,11 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
       </div>
 
 
-      <div className=" flex justify-center items-center max-lg:flex-col">
+      <div className=" flex justify-center items-center gap-5 max-lg:flex-col">
  
-            <FormItem className="w-full ">
+            <FormItem className="w-full  bg-[#0d0f14] flex items-center  px-5 rounded-xl ">
         <p>Starting Date: </p>
+         
         <FormControl className="   text-black ">
           <Controller
             name="startDateTime" 
@@ -205,14 +206,12 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
             render={({ field: { onChange, onBlur, value, ref } }) => (
               <DatePicker
                 selected={value }
-                onChange={(date) => onChange(date)}
-                // onBlur={onBlur}
-                // ref={ref}
+                onChange={(date) => onChange(date)} 
                 showTimeSelect
                 timeInputLabel="Time:"
                 dateFormat="dd/MM/yyyy h:mm aa"
                 wrapperClassName="datePicker"
-                className=" bg-[#0d0f14] px-10 py-3 rounded-xl "
+                className=" bg-transparent pb-4 px-5 py-3 placeholder:text-zinc-400  "
               />
             )}
           />
@@ -221,7 +220,7 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
       </FormItem>
 
 
-            <FormItem className="w-full  ">
+            <FormItem className="w-full   bg-[#0d0f14] flex items-center  px-5 rounded-xl ">
         <p>Ending Date: </p>
         <FormControl className="  text-black ">
           <Controller
@@ -236,7 +235,7 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
                 timeInputLabel="Time:"
                 dateFormat="dd/MM/yyyy h:mm aa"
                 wrapperClassName="datePicker"
-                className=" bg-[#0d0f14] px-10 py-3    rounded-xl "
+                className=" bg-transparent pb-4 px-5 py-3 placeholder:text-zinc-400 "
               />
             )}
           />
@@ -245,16 +244,17 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
       </FormItem>
       </div>
 
-      <div className="flex max-lg:flex-col gap-5 ">
+      <div className="flex items-center justify-center max-lg:flex-col gap-5 ">
             <FormField
               control={form.control}
               name="price"
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormControl>
-                    <div className="flex items-center h-[54px] w-full overflow-hidden rounded-full bg-[#0d0f14]  px-4 py-2">
+                    <div className="flex items-center h-[54px] w-full overflow-hidden rounded-xl bg-[#0d0f14]  px-4 py-2">
                      
-                      <Input type="number" placeholder="Price" {...field} className="p-regular-16 border-0 bg-transparent outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
+                      <Input type="number" placeholder="Price ₹" {...field} className="placeholder:text-zinc-400  border-0 bg-transparent outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0" />
+                  
                       <FormField
                         control={form.control}
                         name="isFree"
@@ -285,11 +285,11 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
               control={form.control}
               name="url"
               render={({ field }) => (
-                <FormItem className="w-full flex bg-[#0d0f14] items-center px-2 rounded-xl">
+                <FormItem className="w-full flex bg-[#0d0f14] items-center justify-center px-2 rounded-xl">
                   <Link1 color="#d9e3f0" variant="TwoTone"/>
                   <FormControl>
-                    <div className="flex items-center h-[54px] w-full overflow-hidden px-1  ">
-                      <Input placeholder="URL" {...field} className=" border-none outline-none  " />
+                    <div className="flex items-center pb-2 w-full overflow-hidden px-1  ">
+                      <Input placeholder="URL" {...field} className=" text-blue-500  border-none outline-none  " />
                     </div>
 
                   </FormControl>

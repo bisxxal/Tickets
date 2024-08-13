@@ -43,7 +43,7 @@ function Checkout({event ,userId }:CheckoutProps) {
     }
   return (
      <form action={onCheakOut} method='post'  >
-        <Button type='submit' role='link' size='lg' className=' bg-pink-600'  >
+        <Button type='submit' role='link' size='lg' className=' rounded-full bg-pink-600'  >
             {event.isFree ? 'Get Ticket' : 'Buy Ticket'}
         </Button>
      </form>

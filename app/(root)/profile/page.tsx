@@ -6,7 +6,6 @@ import { IOrder } from '@/lib/models/order.model';
 import { SearchParamProps } from '@/types';
 import { auth } from '@clerk/nextjs/server';
 import Link from 'next/link'
-import React from 'react'
 
 const ProfilePage = async ({ searchParams }: SearchParamProps) => {
     const { sessionClaims } = auth();
@@ -16,12 +15,16 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
     const eventsPage = Number(searchParams?.eventsPage) || 1;
   
     const orders = await getOrdersByUser({ userId, page: ordersPage})
+
   
     const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
     const organizedEvents = await getEventsByUser({ userId, page: eventsPage })
+
+     
   return (
-    <div className=' px-20  bg-[#13131a]  '>
-    <section className=" max-lg:py-5 py-10 ">
+    <>
+    <div className=' px-20 max-lg:px-4 pb-20  text-white bg-[#13131a]  '>
+    <section className=" max-lg:py-5 py-10  ">
     <div className="wrapper flex items-center justify-center sm:justify-between  ">
       <h3 className=' text-2xl  font-bold text-center sm:text-left'>My Tickets</h3>
       <Button asChild size="lg" className=" bg-pink-600 rounded-full  hidden sm:flex">
@@ -29,10 +32,10 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           Explore More Events
         </Link>
       </Button> 
-    </div>
+    </div> 
   </section>
 
-  <section className="wrapper bg-[#00000038] rounded-xl px-5 py-8  ">
+  <section className="wrapper bg-[#00000038] w-full rounded-xl px-5  py-8  ">
     <Collection
       data={orderedEvents}
       emptyTitle="No event tickets purchased yet"
@@ -41,11 +44,13 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
       limit={3}
       page={ordersPage}
       urlParamName="ordersPage"
-      totalPages={orders?.totalPages}
+      totalPages={orders?.totalPages} 
       />
-  </section>
-      {/* Events Organized */}
-      <section className="bg-[#00000038] rounded-xl mt-20  bg-dotted-pattern bg-cover bg-center max-lg:py-5 py-10 ">
+  </section> 
+      
+      </div>
+
+      <section className="bg-[#0f0f14] text-white pt-20  bg-dotted-pattern bg-cover bg-center max-lg:py-5 py-10 ">
         <div className="wrapper flex items-center justify-center mb-16 px-10 sm:justify-between">
           <h3 className=' text-2xl  font-bold  text-center sm:text-left'>Events Organized</h3>
           <Button asChild size="lg" className="button hidden  bg-blue-600 rounded-full  sm:flex">
@@ -54,7 +59,10 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
             </Link>
           </Button>
         </div> 
-        <Collection 
+       
+       <div className=' px-4 w-full  '>
+
+       <Collection 
           data={organizedEvents?.data}
           emptyTitle="No events have been created yet"
           emptyStateSubtext="Go create some now"
@@ -64,8 +72,10 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           urlParamName="eventsPage"
           totalPages={organizedEvents?.totalPages}
         />
+
+       </div>
       </section>
-      </div>
+      </>
   )
 }
 

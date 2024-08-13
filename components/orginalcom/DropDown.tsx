@@ -41,7 +41,7 @@ function DropDown({onChangeHandeler , value}:DropDownProps) {
     <SelectTrigger className="w-[180px] rounded-xl border-none">
       <SelectValue placeholder="Category" />
     </SelectTrigger>
-    <SelectContent className="bg-[#191b24] rounded-xl   ">
+    <SelectContent className=" bg-[#ffffff24] text-white  border-[#ffffff42] border rounded-xl backdrop-blur-[30px]  ">
    { categories.length > 0 && categories.map((item)=>(
         <SelectItem key={item._id} value={item._id}>
             {item.name}
@@ -50,16 +50,16 @@ function DropDown({onChangeHandeler , value}:DropDownProps) {
    }
    <AlertDialog >
   <AlertDialogTrigger>Add New Category</AlertDialogTrigger>
-  <AlertDialogContent className=" bg-[#191b24]    rounded-xl ">
+  <AlertDialogContent className=" bg-[#0d0f13] text-white  border-[#ffffff42] border rounded-2xl backdrop-blur-[30px]  ">
     <AlertDialogHeader >
       <AlertDialogTitle>New Category</AlertDialogTitle>
       <AlertDialogDescription  >
-       <Input placeholder="Category Name" onChange={(e)=>setNewCategory(e.target.value)} />
+       <Input className=" rounded-xl " placeholder="Category Name" onChange={(e)=>setNewCategory(e.target.value)} />
       </AlertDialogDescription>
     </AlertDialogHeader>
     <AlertDialogFooter>
-      <AlertDialogCancel>Cancel</AlertDialogCancel>
-      <AlertDialogAction className=" bg-pink-600" onClick={()=>startTransition(handelAddCategory)} >Add</AlertDialogAction>
+      <AlertDialogCancel className=" rounded-xl  ">Cancel</AlertDialogCancel>
+      <AlertDialogAction className=" hover:bg-pink-600 bg-pink-600 rounded-xl" onClick={()=>startTransition(handelAddCategory)} >Add</AlertDialogAction>
     </AlertDialogFooter>
   </AlertDialogContent>
 </AlertDialog>
