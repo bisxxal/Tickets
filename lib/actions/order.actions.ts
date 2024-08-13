@@ -90,52 +90,87 @@ export async function getOrdersByUser({ userId, limit = 3, page }: GetOrdersByUs
     try {
       await connectToDatabase()
   
-      if (!eventId) throw new Error('Event ID is required')
-      const eventObjectId = new ObjectId(eventId)
+      // if (!eventId) throw new Error('Event ID is required')
+      // const eventObjectId = new ObjectId(eventId)
   
-      const orders = await Order.aggregate([
-        {
-          $lookup: {
-            from: 'users',
-            localField: 'buyer',
-            foreignField: '_id',
-            as: 'buyer',
-          },
-        },
-        {
-          $unwind: '$buyer',
-        },
-        {
-          $lookup: {
-            from: 'events',
-            localField: 'event',
-            foreignField: '_id',
-            as: 'event',
-          },
-        },
-        {
-          $unwind: '$event',
-        },
-        {
-          $project: {
-            _id: 1,
-            totalAmount: 1,
-            createdAt: 1,
-            eventTitle: '$event.title',
-            eventId: '$event._id',
-            buyer: {
-              $concat: ['$buyer.firstName', ' ', '$buyer.lastName'],
-            },
-          },
-        },
-        {
-          $match: {
-            $and: [{ eventId: eventObjectId }, { buyer: { $regex: RegExp(searchString, 'i') } }],
-          },
-        },
-      ])
+      // const orders = await Order.aggregate([
+      //   {
+      //     $lookup: {
+      //       from: 'users',
+      //       localField: 'buyer',
+      //       foreignField: '_id',
+      //       as: 'buyer',
+      //     },
+      //   },
+      //   {
+      //     $unwind: '$buyer',
+      //   },
+      //   {
+      //     $lookup: {
+      //       from: 'events',
+      //       localField: 'event',
+      //       foreignField: '_id',
+      //       as: 'event',
+      //     },
+      //   },
+      //   {
+      //     $unwind: '$event',
+      //   },
+      //   {
+      //     $project: {
+      //       _id: 1,
+      //       totalAmount: 1,
+      //       createdAt: 1,
+      //       eventTitle: '$event.title',
+      //       eventId: '$event._id',
+      //       buyer: {
+      //         $concat: ['$buyer.firstName', ' ', '$buyer.lastName'],
+      //       },
+      //     },
+      //   },
+      //   {
+      //     $match: {
+      //       $and: [{ eventId: eventObjectId }, { buyer: { $regex: RegExp(searchString, 'i') } }],
+      //     },
+      //   },
+      // ])
   
-      return JSON.parse(JSON.stringify(orders))
+      // return JSON.parse(JSON.stringify(orders))
+
+      if (!eventId) throw new Error('Event ID is required');
+      const eventObjectId = new ObjectId(eventId);
+
+      // console.log('eventObjectId', eventObjectId);
+      
+    // Find orders by eventId and populate related fields
+    const orders = await Order.find({ event: eventObjectId })
+    .populate({ path: 'buyer', model: User, select: '_id firstName lastName' }) // Populate buyer
+      .populate({ path: 'event', model: Event, select: '_id title' }) // Populate event
+      .lean();
+
+      // console.log('orders', orders);
+      
+    // Filter orders by the buyer's name using regex search, ensuring buyer is not null
+    const filteredOrders = orders.filter(order => {
+      if (!order.buyer) return false; // Skip orders without a buyer
+      const buyerName = `${order.buyer.firstName} ${order.buyer.lastName}`;
+      return new RegExp(searchString, 'i').test(buyerName);
+    });
+
+    // // Map orders to the desired structure
+    const formattedOrders = filteredOrders.map(order => ({
+      _id: order._id,
+      totalAmount: order.totalAmount,
+      createdAt: order.createdAt,
+      eventTitle: order.event.title,
+      eventId: order.event._id,
+      buyer: `${order.buyer.firstName} ${order.buyer.lastName}`,
+    }));
+
+    return JSON.parse(JSON.stringify(formattedOrders));
+    // return JSON.parse(JSON.stringify(orders));
+
+
     } catch (error) {
         console.log('error at getOrdersByEvent route', error)
     }

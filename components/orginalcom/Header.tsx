@@ -29,7 +29,7 @@ function Header() {
             <MobileNav/>
           </SignedIn>
           <SignedOut>
-            <Button className=" border ">
+            <Button className=" border rounded-xl ">
               <Link href={"/sign-in"}>Login In</Link>
             </Button>
           </SignedOut>
