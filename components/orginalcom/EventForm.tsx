@@ -111,7 +111,7 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
    
   return (
     <Form {...form}>
-    <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-3">
+    <form onSubmit={form.handleSubmit(onSubmit)} className="flex overflow-hidden flex-col gap-3">
       <div className=" flex max-lg:flex-col gap-3">
       <FormField
         control={form.control}
