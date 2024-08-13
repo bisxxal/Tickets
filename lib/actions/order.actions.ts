@@ -72,12 +72,18 @@ export async function getOrdersByUser({ userId, limit = 3, page }: GetOrdersByUs
  export async function createOrder(order: any) {
     try {
       await connectToDatabase()
+
+      console.log('order', order);
+      
     
     const newOrder = await Order.create({
       ...order,
       event: order.eventId,
       buyer: order.buyerId,
     });
+
+    console.log('newOrder', newOrder);
+    
 
     return JSON.parse(JSON.stringify(newOrder));
     } catch (error) {
