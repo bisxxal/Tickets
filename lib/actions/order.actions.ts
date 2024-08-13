@@ -1,5 +1,5 @@
 'use server'
-import { CheckoutOrderParams, GetOrdersByEventParams, GetOrdersByUserParams } from "@/types"
+import { CheckoutOrderParams, CreateOrderParams, GetOrdersByEventParams, GetOrdersByUserParams } from "@/types"
 import { connectToDatabase } from "../database"
 import Order from "../models/order.model"
 import Stripe from 'stripe' 
@@ -69,27 +69,20 @@ export async function getOrdersByUser({ userId, limit = 3, page }: GetOrdersByUs
     }
   }
 
- export async function createOrder(order: any) {
+  export const createOrder = async (order: CreateOrderParams) => {
     try {
-      await connectToDatabase()
-
-      console.log('order', order);
+      await connectToDatabase();
       
-    
-    const newOrder = await Order.create({
-      ...order,
-      event: order.eventId,
-      buyer: order.buyerId,
-    });
-
-    console.log('newOrder', newOrder);
-    
-
-    return JSON.parse(JSON.stringify(newOrder));
+      const newOrder = await Order.create({
+        ...order,
+        event: order.eventId,
+        buyer: order.buyerId,
+      });
+  
+      return JSON.parse(JSON.stringify(newOrder));
     } catch (error) {
-        console.log('error at createOrder route', error)
+      console.log('error at createOrder route', error)
     }
-
   }
 
   export async function getOrdersByEvent({ searchString, eventId }: GetOrdersByEventParams) {
