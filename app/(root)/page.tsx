@@ -56,7 +56,7 @@ export default async function Home({searchParams} :SearchParamProps) {
           <CategoryFilter />
         </div>
     
-    <div className=" px-4 max-lg:px-0">
+    <div className=" flex  px-4 max-lg:px-0">
     <Collection 
         data={events?.data}
         emptyTitle="No Related Events Found"

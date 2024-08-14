@@ -18,7 +18,7 @@ function Card({event ,hasOrderLink ,hasTicketLink } :CardProps) {
 
   const isEventCreator = userId === event.organizer._id.toString(); 
   return (
-    <div className="group relative  border-l-[0.5px] border-t-[0.5px] border-[#ffffff47] max-lg:h-[370px] h-[470px] max-[395px]:w-[320px] w-[360px]  overflow-hidden rounded-3xl bg-[#ffffff0f] shadow-md transition-all hover:shadow-lg hover:scale-[1.02]   ">
+    <div className="group relative mb-4  max-lg:mb-0 border-l-[0.5px] border-t-[0.5px] border-[#ffffff47] max-lg:h-[370px] h-[470px] max-[395px]:w-[320px] w-[360px]  overflow-hidden rounded-3xl bg-[#ffffff0f] shadow-md transition-all hover:shadow-lg hover:scale-[1.02 hover:translate-y-[-5px]  ">
      
      <div className=' absolute -bottom-2 rounded-full blur-[100px] -right-5 bg-[#1a57f1] h-32 w-32 '></div>
      <div className=' absolute -bottom-2 rounded-full blur-[100px] -left-5 bg-[#cd1af16d] h-32 w-32 '></div>

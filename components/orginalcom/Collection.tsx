@@ -29,7 +29,7 @@ function Collection({
     <div>
       {data && data.length > 0 ? (
         <>
-          <div className=" flex justify-between max-lg:gap-10  flex-wrap items-center max-lg:flex-col w-full ">
+          <div className=" flex justify-between max-lg:gap-10 flex-wrap items-center max-lg:flex-col w-full ">
             {data.map((event, index) => {
               const hasOrderLink = collectionType === "Events_Organized";
               const hasTicketLink = collectionType === "My_Tickets";
