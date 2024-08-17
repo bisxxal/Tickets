@@ -19,7 +19,7 @@ async function EventDetails({params : {id} ,searchParams }:SearchParamProps) {
     <div className="bg-[#13131a] text-white w-full min-h-screen ">
 
         <div className=' flex max-lg:gap-3 gap-10 max-lg:flex-col min-h-screen w-full'>
-            <div className=' w-[40%] max-lg:h-[50vh] max-lg:w-full px-10 max-lg:px-4 py-4 flex flex-col items-start gap-4 '>
+            <div className=' w-[40%] max-lg:h-[70vh] max-lg:w-full px-10 max-lg:px-4 py-4 flex flex-col items-start gap-4 '>
              <img src={event?.imageUrl} className='   h-[560px] rounded-2xl object-cover w-full' alt="" />
              <div className=' flex gap-5 items-center '>
              <p className=' bg-[#00ff5e39] border border-green-400 px-4 py-1 rounded-full'> {event?.isFree ? 'Free' :`₹ ${event?.price}` } </p>

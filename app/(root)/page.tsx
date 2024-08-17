@@ -22,7 +22,7 @@ export default async function Home({searchParams} :SearchParamProps) {
   return (
     <div className="   bg-[#13131a] min-h-screen text-white pb-20">
       <main className=" max-lg:px-3 px-24 flex max-lg:flex-col justify-between mb-20 ">
-        <div className=" w-1/2 flex flex-col pt-20 max-lg:text-4xl max-lg:w-full text-[100px] font-bold leading-none  ">
+        <div className=" w-1/2  flex flex-col pt-20 max-lg:text-4xl max-lg:w-full text-[100px] font-bold leading-none  ">
           <h1>
             {" "}
             Book Your <span className=" text-pink-600 ">Tickets </span> Now
@@ -41,7 +41,7 @@ export default async function Home({searchParams} :SearchParamProps) {
           </Link>
         </div>
 
-        <div className=" w-1/2 max-lg:w-full flex justify-end  ">
+        <div className=" w-1/2 max-lg:w-full max-lg:mt-7 flex justify-end  ">
           <Image
             className=" w-[80%] h-full "
             src="/bg.svg"
@@ -56,7 +56,7 @@ export default async function Home({searchParams} :SearchParamProps) {
           <CategoryFilter />
         </div>
     
-    <div className=" flex  px-4 max-lg:px-0">
+    <div className=" flex max-lg:flex items-center justify-center  px-4 max-lg:px-0">
     <Collection 
         data={events?.data}
         emptyTitle="No Related Events Found"
