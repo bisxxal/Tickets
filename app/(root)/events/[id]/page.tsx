@@ -1,9 +1,7 @@
-import Collection from '@/components/orginalcom/Collection'
-import { Button } from '@/components/ui/button'
+import Collection from '@/components/orginalcom/Collection' 
 import { getEventById, getRelatedEventsByCategory } from '@/lib/actions/event.actions'
 import { formatDateTime } from '@/lib/utils'
-import { SearchParamProps } from '@/types'
-import Image from 'next/image'
+import { SearchParamProps } from '@/types' 
 import Link from 'next/link'
 import { Category, Link1, Location } from 'iconsax-react';
 import CheakOutButton from '@/components/orginalcom/CheakOutButton'
