@@ -31,7 +31,8 @@ async function EventAll({searchParams} :SearchParamProps) {
     </div>
 
 
-     <Collection 
+    <div className=" px-20 max-lg:px-0">
+    <Collection 
         data={events?.data}
         emptyTitle="No Related Events Found"
         emptyStateSubtext="Come back later"
@@ -40,6 +41,7 @@ async function EventAll({searchParams} :SearchParamProps) {
           page={page } 
           totalPages={events?.totalPage}
       />    
+    </div>
     
     </div>
   )

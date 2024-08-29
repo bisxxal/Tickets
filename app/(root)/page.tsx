@@ -20,7 +20,7 @@ export default async function Home({searchParams} :SearchParamProps) {
   });
   return (
     <div className="   bg-[#13131a] min-h-screen text-white pb-20">
-      <main className=" max-lg:px-3 px-24 flex max-lg:flex-col h-screen justify-between mb-20 ">
+      <main className=" max-lg:px-3 px-24 flex max-lg:flex-col h-screen max-lg:h-[90vh] max-lg:justify-around justify-between mb-20 ">
         <div className=" w-1/2  flex flex-col pt-20 max-lg:text-4xl max-lg:w-full text-[100px] font-bold leading-none  ">
           <h1>
             
@@ -40,9 +40,9 @@ export default async function Home({searchParams} :SearchParamProps) {
           </Link>
         </div>
 
-        <div className=" w-1/2 max-lg:w-full max-lg:mt-7 flex justify-end  ">
+        <div className=" w-1/2 max-lg:w-full bg max-lg:mt-7 flex justify-end  ">
           <Image
-            className=" w-[80%] h-full "
+            className=" w-[80%] max-lg:w-full  h-full "
             src="/bg.svg"
             width={500}
             height={500}
