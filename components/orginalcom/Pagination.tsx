@@ -26,7 +26,7 @@ function Pagination({urlParamName, page, totalPages}: {urlParamName?: string, pa
       <Button
         size="lg"
         variant="outline"
-        className="w-28 bg-pink-600 rounded-xl"
+        className="w-28 bg-[#db277868] inshadow border-none rounded-xl"
         onClick={() => onClick('prev')}
         disabled={Number(page) <= 1}
       >
@@ -35,7 +35,7 @@ function Pagination({urlParamName, page, totalPages}: {urlParamName?: string, pa
       <Button
         size="lg"
         variant="outline"
-        className="w-28 bg-pink-600 rounded-xl"
+        className="w-28 bg-[#db277868] hover:bg-[#db277887] hover:border-[#db27787d] inshadow border-none rounded-xl"
         onClick={() => onClick('next')}
         disabled={Number(page) >= totalPages}
       >

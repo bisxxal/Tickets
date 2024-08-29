@@ -9,18 +9,16 @@ import Checkout from './Checkout';
 function CheakOutButton({event }:{event : IEvent}) {
     const {user} = useUser();
     const userId = user?.publicMetadata?.userId as string
-
-    console.log(userId);
-    
+ 
     const hasEventFinished = new Date(event.endDateTime) < new Date()
   return (
     <div className="flex items-center gap-3">
     {hasEventFinished ? (
-      <p className="p-2 text-red-500">Sorry, tickets are no longer available.</p>
+      <p className="p-2 text-red-500 ">Sorry, tickets are no longer available.</p>
     ): (
       <>
         <SignedOut>
-          <Button asChild className="button bg-pink-600 rounded-full" size="lg">
+          <Button asChild className="button bg-pink-60 bg-[#ffffff05] inshadow rounded-full" size="lg">
             <Link href="/sign-in">
               Get Tickets
             </Link>

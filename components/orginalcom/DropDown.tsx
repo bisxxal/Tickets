@@ -6,9 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger,  SelectValue,
 import { ICategory } from "@/lib/models/category.model"
 import { startTransition, useEffect, useState } from "react"
 import { Input } from "../ui/input"
-import { create } from "domain"
 import { createCategory, getAllCategories } from "@/lib/actions/category.actions"
-  
 
 type DropDownProps = {
   onChangeHandeler:()=>void

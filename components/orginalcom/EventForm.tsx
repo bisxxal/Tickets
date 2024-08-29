@@ -28,6 +28,7 @@ import { useRouter } from "next/navigation"
 import { createEvent, updateEvent } from "@/lib/actions/event.actions"
 import { Calendar, Category, Link1, Location } from 'iconsax-react';
 import { IEvent } from "@/lib/models/event.model"
+import TicketForDropDown from "./TicketForDropDown"
 type EventFormProps = {
   userId: string
   type: "Create" | "Update"
@@ -75,6 +76,9 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
             form.reset();
             router.push(`/events/${newEvent._id}`)
           }
+
+          // console.log("create event", values); ;
+          
  
           
         } catch (error) {
@@ -102,7 +106,7 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
 
         
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         
       } 
      }
@@ -135,6 +139,24 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
             <Category color="#d9e3f0" variant="TwoTone"/>
             <FormControl className=" border-none " >
             <DropDown onChangeHandeler={field.onChange} value={field.value} />
+            </FormControl>
+           
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+     
+      </div>
+
+      <div className=" bg-blac w-full ">
+
+         <FormField
+        control={form.control}
+        name="TicketFor"
+        render={({ field }) => (
+          <FormItem className=" w-[290px] max-lg:w-full  flex items-center bg-[#0d0f14] gap-1 px-3 rounded-xl"> 
+            <FormControl className=" border-none " >
+            <TicketForDropDown onChangeHandeler={field.onChange} value={field.value} />
             </FormControl>
            
             <FormMessage />
@@ -174,7 +196,7 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
           />
       </div>
 
-      <div>
+      <div >
       <FormField
         control={form.control}
         name="location"

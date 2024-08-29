@@ -19,11 +19,11 @@ function Checkout({event ,userId }:CheckoutProps) {
         // Check to see if this is a redirect back from Checkout
         const query = new URLSearchParams(window.location.search);
         if (query.get('success')) {
-          console.log('Order placed! You will receive an email confirmation.');
+          // console.log('Order placed! You will receive an email confirmation.');
         }
     
         if (query.get('canceled')) {
-          console.log('Order canceled -- continue to shop around and checkout when you’re ready.');
+          // console.log('Order canceled -- continue to shop around and checkout when you’re ready.');
         }
       }, []);
 
@@ -43,7 +43,7 @@ function Checkout({event ,userId }:CheckoutProps) {
     }
   return (
      <form action={onCheakOut} method='post'  >
-        <Button type='submit' role='link' size='lg' className=' rounded-full bg-pink-600'  >
+        <Button type='submit' role='link' size='lg' className=' rounded-full bg-pink-60 bg-[#db27782e] inshadow'  >
             {event.isFree ? 'Get Ticket' : 'Buy Ticket'}
         </Button>
      </form>

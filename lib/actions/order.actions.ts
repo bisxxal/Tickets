@@ -6,34 +6,37 @@ import Stripe from 'stripe'
 import Event from "../models/event.model"
 import User from "../models/user.models" 
 import {ObjectId} from 'mongodb';
+
 export async function cheakOutOrder(order: CheckoutOrderParams) {
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
-    const price = order.isFree ? 0 :Number(order.price) * 100
-    try {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+  const price = order.isFree ? 0 :Number(order.price) * 100
+  try {
+      
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        price_data: {
+          currency: 'inr',
+          unit_amount: price,
+          product_data: {
+            name: order.eventTitle,
+          },
+        },
+        quantity: 1,
+      },
+      ],
+      metadata:{
+          eventId: order.eventId,
+          buyerId: order.buyerId
+      },
+      mode: 'payment',
+      success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/succes/payture`,
+      cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/succes/payfalse`,
+    }); 
+
+   
         
-        const session = await stripe.checkout.sessions.create({
-            line_items: [
-              {
-                price_data: {
-                  currency: 'inr',
-                  unit_amount: price,
-                  product_data: {
-                    name: order.eventTitle,
-                  },
-                },
-                quantity: 1,
-              },
-            ],
-            metadata:{
-                eventId: order.eventId,
-                buyerId: order.buyerId
-            },
-            mode: 'payment',
-            success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/profile`,
-            cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/`,
-          }); 
-         
-          return session.url; 
+    return session.url; 
 
     } catch (error) {
         console.log('error at cheakOutOrder route', error)
@@ -88,66 +91,18 @@ export async function getOrdersByUser({ userId, limit = 3, page }: GetOrdersByUs
   export async function getOrdersByEvent({ searchString, eventId }: GetOrdersByEventParams) {
     try {
       await connectToDatabase()
-  
-      // if (!eventId) throw new Error('Event ID is required')
-      // const eventObjectId = new ObjectId(eventId)
-  
-      // const orders = await Order.aggregate([
-      //   {
-      //     $lookup: {
-      //       from: 'users',
-      //       localField: 'buyer',
-      //       foreignField: '_id',
-      //       as: 'buyer',
-      //     },
-      //   },
-      //   {
-      //     $unwind: '$buyer',
-      //   },
-      //   {
-      //     $lookup: {
-      //       from: 'events',
-      //       localField: 'event',
-      //       foreignField: '_id',
-      //       as: 'event',
-      //     },
-      //   },
-      //   {
-      //     $unwind: '$event',
-      //   },
-      //   {
-      //     $project: {
-      //       _id: 1,
-      //       totalAmount: 1,
-      //       createdAt: 1,
-      //       eventTitle: '$event.title',
-      //       eventId: '$event._id',
-      //       buyer: {
-      //         $concat: ['$buyer.firstName', ' ', '$buyer.lastName'],
-      //       },
-      //     },
-      //   },
-      //   {
-      //     $match: {
-      //       $and: [{ eventId: eventObjectId }, { buyer: { $regex: RegExp(searchString, 'i') } }],
-      //     },
-      //   },
-      // ])
-  
-      // return JSON.parse(JSON.stringify(orders))
+ 
 
       if (!eventId) throw new Error('Event ID is required');
       const eventObjectId = new ObjectId(eventId);
-
-      // console.log('eventObjectId', eventObjectId);
+ 
       
     // Find orders by eventId and populate related fields
     const orders = await Order.find({ event: eventObjectId })
     .populate({ path: 'buyer', model: User, select: '_id firstName lastName' }) // Populate buyer
       .populate({ path: 'event', model: Event, select: '_id title' }) // Populate event
       .lean();
-
-      // console.log('orders', orders);
+ 
       
     // Filter orders by the buyer's name using regex search, ensuring buyer is not null
     const filteredOrders = orders.filter(order => {
@@ -166,9 +121,7 @@ export async function getOrdersByUser({ userId, limit = 3, page }: GetOrdersByUs
       buyer: `${order.buyer.firstName} ${order.buyer.lastName}`,
     }));
 
-    return JSON.parse(JSON.stringify(formattedOrders));
-    // return JSON.parse(JSON.stringify(orders));
-
+    return JSON.parse(JSON.stringify(formattedOrders)); 
 
     } catch (error) {
         console.log('error at getOrdersByEvent route', error)

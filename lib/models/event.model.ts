@@ -29,6 +29,7 @@ const EventSchema = new Schema({
     isFree: { type: Boolean, default: false },
     url: { type: String },
     category: { type: Schema.Types.ObjectId, ref: 'Category' },
+    TicketFor: { type: Schema.Types.ObjectId, ref: 'TicketFor' },
     organizer: { type: Schema.Types.ObjectId, ref: 'User' },
   })
 

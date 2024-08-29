@@ -34,7 +34,7 @@ const Search = ({ placeholder = 'Search title...' }: { placeholder?: string }) =
   }, [query, searchParams, router])
 
   return (
-    <div className="flex items-center justify-center min-h-[54px] w-full overflow-hidden rounded-full bg-[#0000004a] px-4 py-2 max-lg:mb-2 mb-10"> 
+    <div className="flex items-center justify-center min-h-[54px] w-full overflow-hidden rounded-full bg-[#0000004a bg-[#ffffff05] inshadow px-4 py-2 max-lg:mb-2 mb-10"> 
     <SearchNormal color="#d9e3f0"/>
       <Input 
         type="text"

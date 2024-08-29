@@ -8,23 +8,22 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home({searchParams} :SearchParamProps) {
-  
   const page = Number(searchParams.page) || 1;
   const searchText = (searchParams.query as string) || ""; 
   const category = (searchParams.category as string) || "";
 
  const events = await getAllEvents({
     query: searchText,
-    limit: 6,
+    limit: 4,
     page,
     category: category,
   });
   return (
     <div className="   bg-[#13131a] min-h-screen text-white pb-20">
-      <main className=" max-lg:px-3 px-24 flex max-lg:flex-col justify-between mb-20 ">
+      <main className=" max-lg:px-3 px-24 flex max-lg:flex-col h-screen justify-between mb-20 ">
         <div className=" w-1/2  flex flex-col pt-20 max-lg:text-4xl max-lg:w-full text-[100px] font-bold leading-none  ">
           <h1>
-            {" "}
+            
             Book Your <span className=" text-pink-600 ">Tickets </span> Now
           </h1>
           <p className=" font-normal mt-10 text-sm">
@@ -32,12 +31,12 @@ export default async function Home({searchParams} :SearchParamProps) {
             to secure your spot at Your Ticket .
           </p>
 
-          <Link href={"/"}>
-            {" "}
-            <Button className=" border hover:border-2 border-pink-600 rounded-xl">
-              {" "}
-              Get Your Ticket{" "}
-            </Button>{" "}
+          <Link href={"/events"}>
+             
+            <Button className=" hover:bg-[#db277844] border-[#db27787d] border-[2px] bg-[#db277824] inshadow rounded-2xl">
+               
+              Get Your Ticket 
+            </Button> 
           </Link>
         </div>
 
@@ -63,8 +62,8 @@ export default async function Home({searchParams} :SearchParamProps) {
         emptyStateSubtext="Come back later"
         collectionType="All_Events"
         limit={3}
-          page={page } 
-          totalPages={events?.totalPages}
+        page={page } 
+        totalPages={events?.totalPage}
       />
     </div>
     </div>

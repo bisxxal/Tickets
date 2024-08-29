@@ -28,6 +28,7 @@ export type CreateUserParams = {
       price: string
       isFree: boolean
       url: string
+      TicketFor: string
     }
     path: string
   }
@@ -60,6 +61,7 @@ export type CreateUserParams = {
     category: string
     limit: number
     page: number
+    ticketfor?: string
   }
   
   export type GetEventsByUserParams = {
