@@ -1,36 +1,6 @@
-// import React from 'react'
 
-// function TicketForFilter() {
-//   return (
-  // <Select onValueChange={(value: string) => onSelectCategory(value)}>
-    //   <SelectTrigger className="select-field bg-[#0d0d12] py-7 rounded-xl max-lg:mb-4 border-none ">
-    //     <SelectValue placeholder="Ticket For" />
-    //   </SelectTrigger>
-    //   <SelectContent className=" bg-[#ffffff24] text-white  border-[#ffffff42] border rounded-xl backdrop-blur-[30px]">
-    //     <SelectItem value="All" className=" border-none rounded-xl p-regular-14">All</SelectItem>
-
-    //     {categories.map((category) => (
-    //       <SelectItem value={category.name} key={category._id} className="select-item p-regular-14">
-    //         {category.name}
-    //       </SelectItem>
-    //     ))}
-    //   </SelectContent>
-    // </Select>
-//   )
-// }
-
-// export default TicketForFilter
-
-"use client"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { getAllCategories, getAllTicket } from "@/lib/actions/category.actions"; 
-import { ICategory } from "@/lib/models/category.model";
+"use client" 
+import { getAllCategories, getAllTicket } from "@/lib/actions/category.actions";  
 import { ITicketFor } from "@/lib/models/ticketfor.model";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -86,7 +56,7 @@ const TicketForFilter = () => {
    {categories.map((category) => (
           <div  key={category._id} className="select-item cursor-pointer  rounded-xl  px-6 max-md:px-2  flex p-regular-14">
 
-            <h1 className={`${IsSelected === `ticketfor=${category.name}` ? ' text-blue-500 border-b-[2px] border-blue-500  font-semibold ':' ' } `} onClick={()=>onSelectCategory(category.name)}>   {category.name} </h1>
+            <h1 className={`${IsSelected === `ticketfor=${category?.name}` ? ' text-blue-500 border-b-[2px] border-blue-500  font-semibold ':' ' } `} onClick={()=>onSelectCategory(category?.name)}>   {category?.name} </h1>
          
           </div>
         ))}

@@ -111,51 +111,14 @@ export async function getAllEvents({ query, limit = 6, page, category }: GetAllE
     }
 }
 
-
-// export async function getAllEventsInPage({ query, limit = 6, page, category ,ticketfor }: GetAllEventsParams) {
-//     try {
-//         await connectToDatabase() 
-//         const titleCondition = query ? { TicketFor: { $regex: TicketFor, $options: 'i' } } : {}
-//         const categoryCondition = category ? await getCategoryByName(category) : null
-//         const ticketforCondition = ticketfor ? await getTicketForByName(category) : null
-//         const conditions = {
-//           $and: [titleCondition, categoryCondition,ticketforCondition ? { category: categoryCondition._id ,TicketFor:ticketforCondition._id  } : {}],
-//         }
-    
-
-//         const events = Event.find(conditions)
-//         .sort({createdAt: -1})
-//         .limit(limit)
-//         .skip((Number(page) - 1) * limit);
-
-//         const allEvents = await populateEvent(events)
-//         const eventsCount    = await Event.countDocuments(conditions)
-
-//         return {
-//             data: JSON.parse(JSON.stringify(allEvents)),
-//             totalPage : Math.ceil(eventsCount / limit),
-//         }
-         
-//         // return JSON.parse(JSON.stringify(event))
-//     } catch (error) {
-//         console.log("eroor at getEventByIdFor Page route ",error)
-//     }
-// }
-
 export async function getAllEventsInPage({ query, limit = 6, page, category, ticketfor }: GetAllEventsParams) {
   try {
       await connectToDatabase();
       
-      // Search by TicketFor if a query is provided
       const titleCondition = query ? { title: { $regex: query, $options: 'i' } } : {};
-      
-      // Get the category by name if a category is provided
-      const categoryCondition = category ? await getCategoryByName(category) : null;
-      
-      // Get the TicketFor by name if a ticketfor is provided
+      const categoryCondition = category ? await getCategoryByName(category) : null;      
       const ticketforCondition = ticketfor ? await getTicketForByName(ticketfor) : null;
       
-      // Combine conditions for querying events
       const conditions = {
           $and: [
               titleCondition,
@@ -164,16 +127,13 @@ export async function getAllEventsInPage({ query, limit = 6, page, category, tic
           ],
       };
 
-      // Find events based on the conditions
       const events = Event.find(conditions)
           .sort({ createdAt: -1 })
           .limit(limit)
           .skip((Number(page) - 1) * limit);
 
-      // Populate related fields in the events
       const allEvents = await populateEvent(events);
       
-      // Count total events matching the conditions
       const eventsCount = await Event.countDocuments(conditions);
 
       return {

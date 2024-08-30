@@ -1,10 +1,4 @@
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
+import { Sheet, SheetContent,  SheetTrigger,
 } from "@/components/ui/sheet"
 import NavItems from "./NavItems"
 import { SidebarLeft } from "iconsax-react"

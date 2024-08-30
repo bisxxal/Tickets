@@ -47,10 +47,8 @@ import {
     const response = result.response;
     const cleanedText = response.text().replace(/\*/g, '');   
  
-    console.log(response.text());
-    // console.log(cleanedText);
-    return response.text()
-    // return cleanedText
+   
+    return response.text() 
   }
   
  

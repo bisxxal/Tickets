@@ -7,10 +7,7 @@ import { IoMdSend } from "react-icons/io";
 import runChat from "@/lib/Gemini";
 
 const ChatBot  = ({chat}:any) => {
-
-  // console.log(chat);
-  
-    const [showSearch, setShowSearch] = useState<boolean>(false);
+  const [showSearch, setShowSearch] = useState<boolean>(false);
   const [input, setInput] = useState<string>( chat||"");
   const [recentPrompt, setRecentPrompt] = useState<string>("");
   const [showResult, setShowResult] = useState<boolean>(false);

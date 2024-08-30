@@ -1,13 +1,3 @@
-// import React from 'react'
-
-// function TicketForDropDown() {
-//   return (
-//     <div>TicketForDropDown</div>
-//   )
-// }
-
-// export default TicketForDropDown
-
 
 import { Select, SelectContent, SelectItem, SelectTrigger,  SelectValue,
 } from "@/components/ui/select"

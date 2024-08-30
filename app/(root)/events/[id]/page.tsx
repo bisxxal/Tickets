@@ -29,13 +29,13 @@ async function EventDetails({params : {id} ,searchParams }:SearchParamProps) {
   return (
     <div className="bg-[#13131a] relative text-white w-full min-h-screen ">
 
-<ChatBot chat={chat.toString()}/>
+       <ChatBot chat={chat.toString()}/>
         <div className=' flex max-lg:gap-3 gap-10 max-lg:flex-col min-h-screen w-full'>
             <div className=' w-[40%] max-lg:h-[70vh] max-lg:w-full px-10 max-lg:px-4 py-4 flex flex-col items-start gap-4 '>
              <img src={event?.imageUrl} className='   h-[560px] rounded-2xl object-cover w-full' alt="" />
              <div className=' flex gap-5 items-center '>
              <p className=' bg-[#00ff5e22] inshadow border-[2px] border-[#4ade8060] px-4 py-1 rounded-full'> {event?.isFree ? 'Free' :`₹ ${event?.price}` } </p>
-             <h3 className='bg-[#ffffff05] inshadow border-[2px] border-[#ffffff34] px-4 py-1 rounded-full'>{event?.category.name}</h3>
+             <h3 className='bg-[#ffffff05] inshadow border-[2px] border-[#ffffff34] px-4 py-1 rounded-full'>{event?.category?.name}</h3>
            
              </div>
               </div>
@@ -49,7 +49,7 @@ async function EventDetails({params : {id} ,searchParams }:SearchParamProps) {
                   <Edit2 size="25" color="white"/>
                   </Link>
             
-                <h1 className=' border-l-[2px] border-[#00000078] pl-2 '> <DeleteConfirmation eventId={event._id} /></h1>
+                <h1 className=' border-l-[2px] border-[#00000078] pl-2 '> <DeleteConfirmation eventId={event?._id} /></h1>
                 </div>
               )}
             </div>
@@ -72,6 +72,16 @@ async function EventDetails({params : {id} ,searchParams }:SearchParamProps) {
             <h4 className=" text-sm text-zinc-400 mb-3">{event?.description}   </h4>
 
            <Speek data={event.description} /> 
+            </div>
+
+            <div className=' mt-3 '>
+            <label htmlFor="countries" className=" mb-2 text-sm ">Select your Age </label>
+            <select id="countries" className=" ml-3 bg-[#ffffff05] inshadow  border-[2px] w-fit border-[#ffffff2d] text-gray-100 text-sm rounded-xl px-4  py-2 focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+              <option className='  '>under 5 yr</option>
+              <option className='  '>Above 66 yr</option>
+               
+              </select>
             </div>
             <Link href={event?.url} className=' line-clamp-1 bg-[#001eff23 bg-[#001eff23] inshadow px-3 border-[2px] border-[#001eff25]  rounded-2xl py-1 flex items-center gap-2 my-4' > <Link1 color='#60a5fa ' variant="TwoTone"/> {event?.url.split(0,100)} </Link>
  

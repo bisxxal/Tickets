@@ -95,23 +95,19 @@ export async function getOrdersByUser({ userId, limit = 3, page }: GetOrdersByUs
 
       if (!eventId) throw new Error('Event ID is required');
       const eventObjectId = new ObjectId(eventId);
- 
-      
-    // Find orders by eventId and populate related fields
+            
     const orders = await Order.find({ event: eventObjectId })
     .populate({ path: 'buyer', model: User, select: '_id firstName lastName' }) // Populate buyer
       .populate({ path: 'event', model: Event, select: '_id title' }) // Populate event
       .lean();
  
       
-    // Filter orders by the buyer's name using regex search, ensuring buyer is not null
     const filteredOrders = orders.filter(order => {
       if (!order.buyer) return false; // Skip orders without a buyer
       const buyerName = `${order.buyer.firstName} ${order.buyer.lastName}`;
       return new RegExp(searchString, 'i').test(buyerName);
     });
 
-    // // Map orders to the desired structure
     const formattedOrders = filteredOrders.map(order => ({
       _id: order._id,
       totalAmount: order.totalAmount,

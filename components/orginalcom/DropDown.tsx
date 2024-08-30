@@ -41,8 +41,8 @@ function DropDown({onChangeHandeler , value}:DropDownProps) {
     </SelectTrigger>
     <SelectContent className=" bg-[#ffffff24] text-white  border-[#ffffff42] border rounded-xl backdrop-blur-[30px]  ">
    { categories.length > 0 && categories.map((item)=>(
-        <SelectItem key={item._id} value={item._id}>
-            {item.name}
+        <SelectItem key={item?._id} value={item?._id}>
+            {item?.name}
         </SelectItem>
    ))
    }

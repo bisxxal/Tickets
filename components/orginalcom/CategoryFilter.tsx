@@ -52,9 +52,9 @@ const CategoryFilter = () => {
       <SelectContent className=" bg-[#ffffff24] text-white  border-[#ffffff42] border-[2px] rounded-xl backdrop-blur-[30px]">
         <SelectItem value="All" className=" border-none rounded-xl p-regular-14">All</SelectItem>
 
-        {categories.map((category) => (
-          <SelectItem value={category.name} key={category._id} className="select-item p-regular-14">
-            {category.name}
+        {categories?.map((category) => (
+          <SelectItem value={category?.name} key={category?._id} className="select-item p-regular-14">
+            {category?.name}
           </SelectItem>
         ))}
       </SelectContent>

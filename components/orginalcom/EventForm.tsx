@@ -5,12 +5,7 @@ import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
   
 import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
+import { Form, FormControl, FormField, FormItem, FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { EventFormSchema } from "@/lib/validator"
@@ -76,11 +71,7 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
             form.reset();
             router.push(`/events/${newEvent._id}`)
           }
-
-          // console.log("create event", values); ;
-          
  
-          
         } catch (error) {
           
         } 
@@ -106,8 +97,7 @@ function EventForm({ userId, type ,event , eventId}:EventFormProps) {
 
         
       } catch (error) {
-        // console.log(error);
-        
+         
       } 
      }
 

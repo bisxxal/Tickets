@@ -37,12 +37,12 @@ function Collection({
               return ( 
 
                 <>
-                   <Card
-                    event={event}
-                    hasOrderLink={hasOrderLink}
-                    hasTicketLink={hasTicketLink}
-                    />  
-                    </>
+                <Card
+                event={event}
+                hasOrderLink={hasOrderLink}
+                hasTicketLink={hasTicketLink}
+                />  
+                </>
               );
             })}
 
