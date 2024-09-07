@@ -11,21 +11,20 @@ import { DeleteConfirmation } from '@/components/orginalcom/DeleteConfirmation'
 import ChatBot from '@/components/orginalcom/ChatBot'
 async function EventDetails({params : {id} ,searchParams }:SearchParamProps) {
  const event = await getEventById(id)
-//  console.log(event);
  const relatedEvents = await getRelatedEventsByCategory({
-  categoryId: event?.category?._id,
-  eventId: event?._id,
-  page: searchParams?.page as string,
+   categoryId: event?.category?._id,
+   eventId: event?._id,
+   page: searchParams?.page as string,
  }) 
 
  const { sessionClaims } = auth();
  const userId = sessionClaims?.userId as string;
-
- const isEventCreator = userId === event.organizer._id.toString(); 
-
-
+ 
+ const isEventCreator = userId === event?.organizer?._id.toString(); 
+ 
+ 
  const chat = `Tell me about ${event?.title} in ${event?.location}`
-
+ 
   return (
     <div className="bg-[#13131a] relative text-white w-full min-h-screen ">
 
@@ -71,13 +70,14 @@ async function EventDetails({params : {id} ,searchParams }:SearchParamProps) {
             <h1 className=' text-lg font-medium mb-3'>About The Event : </h1>
             <h4 className=" text-sm text-zinc-400 mb-3">{event?.description}   </h4>
 
-           <Speek data={event.description} /> 
+           <Speek data={event?.description} /> 
             </div>
 
             <div className=' mt-3 '>
             <label htmlFor="countries" className=" mb-2 text-sm ">Select your Age </label>
             <select id="countries" className=" ml-3 bg-[#ffffff05] inshadow  border-[2px] w-fit border-[#ffffff2d] text-gray-100 text-sm rounded-xl px-4  py-2 focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
+              <option className='  '> yr</option>
               <option className='  '>under 5 yr</option>
               <option className='  '>Above 66 yr</option>
                

@@ -10,8 +10,7 @@ const TicketForFilter = () => {
   const [categories, setCategories] = useState<ITicketFor[]>([]);
   const router = useRouter();
   const searchParams = useSearchParams();
-  
-  // console.log(searchParams.toString());
+ 
 
   const IsSelected = searchParams.toString()
   

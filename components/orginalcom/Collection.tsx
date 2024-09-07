@@ -26,7 +26,7 @@ function Collection({
  
 }: CollectionProps) { 
   return (
-    <div>
+    <div> 
       {data && data.length > 0 ? (
         <>
           <div className=" flex justify-between max-lg:gap-10 gap-3 flex-wrap items-center max-lg:flex-col w-full ">

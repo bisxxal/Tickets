@@ -5,6 +5,7 @@ import { RxCross2 } from "react-icons/rx";
 import { BiBot } from "react-icons/bi";
 import { IoMdSend } from "react-icons/io";
 import runChat from "@/lib/Gemini";
+import Image from "next/image";
 
 const ChatBot  = ({chat}:any) => {
   const [showSearch, setShowSearch] = useState<boolean>(false);
@@ -61,10 +62,11 @@ const ChatBot  = ({chat}:any) => {
     <>
       <div
         onClick={() => setShowSearch(true)}
-        className="inshadow fixed bottom-10 backdrop-blur-md right-10 flex items-center cursor-pointer gap-3 px-2 py-2 border-[2px] bg-[#ffffff0b] border-[#ffffff17] rounded-2xl"
+        className="inshadow fixed bottom-10 backdrop-blur-md right-10 flex items-center cursor-pointer gap-1 px-2 py-2 border-[2px] bg-[#ffffff0b] border-[#ffffff17] rounded-2xl"
       >
         Ask ChatBot
-        <BiBot size={29} />
+ 
+        <Image src='/ai.png' className='w-[50px] animate-bounce transition-all h-[50px]' height={90} width={90} alt="" />    
       </div>
 
       {showSearch && (

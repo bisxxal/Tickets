@@ -4,6 +4,7 @@ import { CreateCategoryParams } from "@/types";
 import { connectToDatabase } from "../database";
 import Category from "../models/category.model";
 import TicketFor from "../models/ticketfor.model";
+import Event from "../models/event.model";
 
 export async function createCategory({categoryName}: CreateCategoryParams) {
     try {
@@ -46,5 +47,40 @@ export async function getAllTicket() {
         return JSON.parse(JSON.stringify(categories))
     } catch (error) {
         console.log("error in get categories route" , error);
+    }
+}
+
+
+// export async function getAllLocation() {
+//     try {
+//         await connectToDatabase()
+
+//         const locations = await Event.find()
+
+//         // Extract locations and remove duplicates
+//         const uniqueLocations = [...new Set(locations.map((event) => event.location))]
+
+//         return JSON.parse(JSON.stringify(uniqueLocations))
+
+//     } catch (error) {
+//         console.log("error in get categories route", error);
+//     }
+// }
+// type Location = string; 
+
+export async function getAllLocation()  {
+    try {
+        await connectToDatabase();
+
+        const locations: Event[] = await Event.find();
+
+        // Extract locations and remove duplicates
+        const uniqueLocations: Location[] = [...new Set(locations?.map((event) => event?.location))];
+
+        return JSON.parse(JSON.stringify(uniqueLocations));
+
+    } catch (error) {
+        console.error("Error in get categories route", error);
+        return undefined;
     }
 }

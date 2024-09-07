@@ -10,7 +10,7 @@ const Orders = async ({ searchParams }: SearchParamProps) => {
   const searchText = (searchParams?.query as string) || ''
 
   const orders = await getOrdersByEvent({ eventId, searchString: searchText })
-  // console.log(orders);
+ 
   return (
     <div className=' min-h-screen bg-[#13131a] text-white px-20 max-lg:px-3 '>
       <section className=" bg-[#13131a] py-5 md:py-10">

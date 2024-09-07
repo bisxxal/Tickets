@@ -13,8 +13,9 @@ export interface IEvent extends Document {
     price: string;
     isFree: boolean;
     url?: string;
-    category: { _id: string, name: string }
-    organizer: { _id: string, firstName: string, lastName: string }
+    TicketFor?: { _id: string, name: string }; // TicketFor is a subdocument
+    category?: { _id: string, name: string }
+    organizer?: { _id: string, firstName: string, lastName: string }
   }
   
 const EventSchema = new Schema({

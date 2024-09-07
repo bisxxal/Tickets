@@ -31,13 +31,21 @@ export default async function Home({searchParams} :SearchParamProps) {
             to secure your spot at Your Ticket .
           </p>
 
-          <Link href={"/events"}>
+        <div className=" flex gap-4">
+        <Link href={"/events"}>
              
-            <Button className=" hover:bg-[#db277844] border-[#db27787d] border-[2px] bg-[#db277824] inshadow rounded-2xl">
-               
-              Get Your Ticket 
-            </Button> 
-          </Link>
+             <Button className=" hover:bg-[#db277844] border-[#db27787d] border-[2px] bg-[#db277824] inshadow rounded-2xl">
+                
+               Get Your Ticket 
+             </Button> 
+           </Link>
+           <Link href={"/ai"}>
+              
+             <Button className=" hover:bg-[#db277844] border-[#db27787d] border-[2px] bg-[#db277824] inshadow rounded-2xl">
+               Book your ticket by Ai
+             </Button> 
+           </Link>
+        </div>
         </div>
 
         <div className=" w-1/2 max-lg:w-full bg max-lg:mt-7 flex justify-end  ">
