@@ -8,7 +8,7 @@ import { Ticket } from "iconsax-react";
 
 function Header() {
   return (
-    <div className=" w-full h-[65px] items-center bg-[#191b24] text-white flex justify-between px-3">
+    <div className=" w-full h-[60px] items-center bg-[#191b24] text-white flex justify-between px-3">
       <div>
       
         <Link href={"/"} className=" flex items-center font-semibold text-lg gap-3">
@@ -29,7 +29,7 @@ function Header() {
             <MobileNav/>
           </SignedIn>
           <SignedOut>
-            <Button className=" border rounded-xl ">
+            <Button className=" border-[2px] border-[#ffffff58] inshadow bg-[#ffffff04] rounded-xl ">
               <Link href={"/sign-in"}>Login In</Link>
             </Button>
           </SignedOut>

@@ -1,5 +1,6 @@
 import Ai from '@/components/orginalcom/AiPage'
 import AiSecond from '@/components/orginalcom/AiSecond';
+import Header from '@/components/orginalcom/Header';
 import { getAllCategories  } from '@/lib/actions/category.actions'
 import { Metadata } from 'next';
 export const metadata: Metadata = {
@@ -11,7 +12,8 @@ async function AiPage() {
     // const location = await getAllLocation()
   
     return (
-    <main className=' h-screen overflow-hidden'>
+    <main className=' min-h-screen overflow-hidden'>
+      <Header /> 
         {/* <Ai categories={Categories } locations = {location}/>  */}
         <AiSecond />
     </main>

@@ -78,9 +78,9 @@ function AiSecond() {
 
   return (
     <div className="flex flex-col items-center justify-center gap-3 text-white bg-[#13131a] w-full overflow-hidden h-screen">
-    <h1 className=' text-l font-semibold'>Book your ticket with <span className=' bg-zinc-700 px-2 rounded-xl '>AI</span> just ask simple Question .. </h1>
+    <h1 className=' text-l max-md:text-sm font-semibold'>Book your ticket with <span className=' bg-zinc-700 px-2 rounded-xl '>AI</span> just ask simple Question .. </h1>
 
-      <form onSubmit={handleParse} className="relative bg-[#0c0c11] w-[350px] rounded-xl min-h-[90vh] p-4">
+      <form onSubmit={handleParse} className="relative bg-[#0c0c11] w-[350px] rounded-xl max-lg:hj-[84vh] min-h-[90vh] p-4">
         <div className="flex items-center rounded-xl overflow-hidden">
           <input className="p-2 text-sm inshadow h-full py-[10px] outline-none shadow bg-[#ffffff09] w-[95%]" name="sentence" type="text" placeholder="Enter your prompt" />
           <button type="submit" className="px-3 py-2 text-2xl inshadow bg-[#3b83f682] text-white">
