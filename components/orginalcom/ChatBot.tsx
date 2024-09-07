@@ -93,7 +93,7 @@ const ChatBot  = ({chat}:any) => {
             </div>
  
             <div className="p-4 text-white flex items-center min-h-full justify-center">
-              {loading ? ( <img className=" w-[130px] " src="/loading.gif" alt='' /> ) : <p dangerouslySetInnerHTML={{ __html: resultData }} />} 
+              {loading ? ( <Image className=" w-[130px] " src="/loading.gif" height={90} width={90} alt='' /> ) : <p dangerouslySetInnerHTML={{ __html: resultData }} />} 
             </div>
           </div>
         </div>

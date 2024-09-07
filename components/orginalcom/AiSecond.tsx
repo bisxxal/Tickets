@@ -6,6 +6,7 @@ import { Location } from 'iconsax-react';
 import { useState } from 'react';
 import CheakOutButton from './CheakOutButton';
 import { IoSendSharp } from "react-icons/io5";
+import Image from 'next/image';
 
 type ExtractedData = {
   category: string | null;
@@ -90,7 +91,9 @@ function AiSecond() {
         {events && events !== 'not' && (
           <div className="bg-[#2828284b] w-full mt-6 mb-3 overflow-hidden pb-3 rounded-xl">
             <div className="max-w-[300px] w-full">
-              <img className="w-full h-full" src={events?.imageUrl} alt="" />
+              {/* <img className="w-full h-full" src={events?.imageUrl} alt="" /> */}
+              <Image className=' h-full w-full object-cover ' src={events?.imageUrl} alt='' height={456} width={534}  /> 
+
             </div>
             <div className="text-sm flex flex-col gap-2 px-6 mt-3">
               <h1>{events?.title}</h1>

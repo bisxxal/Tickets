@@ -9,6 +9,7 @@ import Speek from '@/components/orginalcom/Speek'
 import { auth } from '@clerk/nextjs/server'
 import { DeleteConfirmation } from '@/components/orginalcom/DeleteConfirmation'
 import ChatBot from '@/components/orginalcom/ChatBot'
+import Image from 'next/image'
 async function EventDetails({params : {id} ,searchParams }:SearchParamProps) {
  const event = await getEventById(id)
  const relatedEvents = await getRelatedEventsByCategory({
@@ -31,7 +32,7 @@ async function EventDetails({params : {id} ,searchParams }:SearchParamProps) {
        <ChatBot chat={chat.toString()}/>
         <div className=' flex max-lg:gap-3 gap-10 max-lg:flex-col min-h-screen w-full'>
             <div className=' w-[40%] max-lg:h-[70vh] max-lg:w-full px-10 max-lg:px-4 py-4 flex flex-col items-start gap-4 '>
-             <img src={event?.imageUrl} className='   h-[560px] rounded-2xl object-cover w-full' alt="" />
+             <Image src={event?.imageUrl} className='   h-[560px] rounded-2xl object-cover w-full' alt="" height={990} width={990} />
              <div className=' flex gap-5 items-center '>
              <p className=' bg-[#00ff5e22] inshadow border-[2px] border-[#4ade8060] px-4 py-1 rounded-full'> {event?.isFree ? 'Free' :`₹ ${event?.price}` } </p>
              <h3 className='bg-[#ffffff05] inshadow border-[2px] border-[#ffffff34] px-4 py-1 rounded-full'>{event?.category?.name}</h3>

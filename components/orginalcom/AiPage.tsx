@@ -9,6 +9,7 @@ import CheakOutButton from './CheakOutButton';
 import { Location } from 'iconsax-react';
 import { formatDateTime } from '@/lib/utils';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type Step = 'start' | 'category' | 'location' | 'confirm';
 
@@ -120,7 +121,7 @@ function Ai({ categories, locations }: AiProps) {
 
             {events ? (
               <div className="bg-[#2828284b] w-full overflow-hidden pb-3 rounded-xl">
-                <img className="w-full max-h-[300px]" src={events?.imageUrl} alt="" />
+                <Image className="w-full max-h-[300px]" src={events?.imageUrl} alt="" height={290} width={290} />
                 <div className="text-sm flex flex-col gap-2 px-6 mt-3">
                   <h1>{events?.title}</h1>
                   <p>₹ {events?.price}</p>

@@ -7,6 +7,7 @@ import { generateClientDropzoneAccept } from 'uploadthing/client'
 import { Button } from '@/components/ui/button'
 import { convertFileToUrl } from '@/lib/utils'
 import { DocumentUpload } from 'iconsax-react'
+import Image from 'next/image'
 
 type FileUploaderProps = {
   onFieldChange: (url: string) => void
@@ -40,11 +41,11 @@ export function FileUploader({ onFieldChange , imageUrl , setFiles }: FileUpload
 
       {imageUrl ? (
         <div className="flex h-full w-full  flex-1 justify-center ">
-          <img
+          <Image
             src={imageUrl}
             alt="image"
-            width={250}
-            height={250}
+            width={750}
+            height={750}
             className="w-full object-contain object-center"
           />
         </div>

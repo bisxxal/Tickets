@@ -1,5 +1,6 @@
 'use client'
-
+ 
+import Image from "next/image"
 import Link from "next/link"
 
 function page({params}: any) {
@@ -7,7 +8,7 @@ function page({params}: any) {
     <div className='h-screen flex justify-center items-center bg-black text-zinc-200 '>
 
         <div className=" flex items-center justify-center flex-col gap-5">
-        {params.id === 'payture' ? (    <img className="h-20 w-20" src="/done.png" alt="" /> ) :(   <img className="h-20 w-20" src="/cancel.png" alt="" /> ) }
+        {params.id === 'payture' ? (    <Image src="/done.png" className="h-20 w-20"  alt=""  height={930} width={589}/> ) :(   <Image className="h-20 w-20" height={950} width={859} src="/cancel.png" alt="" /> ) }
          
             <h1> {params.id === 'payture' ? 'Payment Verified Ticket Booked' :'Payment not verified Ticket Canceled ' }</h1>
 

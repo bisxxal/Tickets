@@ -22,7 +22,7 @@ function Card({event ,hasOrderLink ,hasTicketLink } :CardProps) {
      
      <div className=' absolute -bottom-2 rounded-full blur-[100px] -right-5 bg-[#1a57f1] h-32 w-32 '></div>
     <Link  href={`/events/${event?._id}`}>
-      <Image className=' h-[260px] max-lg:h-[199px] w-full object-cover ' src={event?.imageUrl} alt='' height={456} width={234}  /> 
+      <Image className=' h-[260px] max-lg:h-[199px] w-full object-cover ' src={event?.imageUrl} alt='' height={856} width={934}  /> 
     </Link>
     
     {isEventCreator && !hasTicketLink && (
