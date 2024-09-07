@@ -33,8 +33,9 @@ type EventFormProps = {
 function EventForm({ userId, type ,event , eventId}:EventFormProps) {
   const [files , setFiles] = useState<File[]>([])
   const router = useRouter()
+  
   const intitialValues = event && type=== 'Update' ? {...event ,  startDateTime: new Date(event.startDateTime), 
-    endDateTime: new Date(event.endDateTime) } : eventDefaultValues;
+    endDateTime: new Date(event.endDateTime), TicketFor: event.TicketFor?._id || '' } : eventDefaultValues;
 
 
   const form = useForm<z.infer<typeof EventFormSchema>>({

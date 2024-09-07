@@ -50,7 +50,7 @@ function Ai({ categories, locations }: AiProps) {
 
     try {
       const fetchedEvents = await getEventByAI({
-        category: category.name,
+        title: category.name,
         location,
       });
       setEvents(fetchedEvents);  

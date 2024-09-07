@@ -49,38 +49,20 @@ export async function getAllTicket() {
         console.log("error in get categories route" , error);
     }
 }
+ 
 
-
-// export async function getAllLocation() {
+// export async function getAllLocation()  {
 //     try {
-//         await connectToDatabase()
+//         await connectToDatabase();
 
-//         const locations = await Event.find()
+//         const locations: Event[] = await Event.find();
+ 
+//         const uniqueLocations: Location[] = [...new Set(locations?.map((event) => event?.location))];
 
-//         // Extract locations and remove duplicates
-//         const uniqueLocations = [...new Set(locations.map((event) => event.location))]
-
-//         return JSON.parse(JSON.stringify(uniqueLocations))
+//         return JSON.parse(JSON.stringify(uniqueLocations));
 
 //     } catch (error) {
-//         console.log("error in get categories route", error);
+//         console.error("Error in get categories route", error);
+//         return undefined;
 //     }
 // }
-// type Location = string; 
-
-export async function getAllLocation()  {
-    try {
-        await connectToDatabase();
-
-        const locations: Event[] = await Event.find();
-
-        // Extract locations and remove duplicates
-        const uniqueLocations: Location[] = [...new Set(locations?.map((event) => event?.location))];
-
-        return JSON.parse(JSON.stringify(uniqueLocations));
-
-    } catch (error) {
-        console.error("Error in get categories route", error);
-        return undefined;
-    }
-}
