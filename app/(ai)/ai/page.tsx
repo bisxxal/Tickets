@@ -14,7 +14,7 @@ async function AiPage() {
     return (
     <main className=' min-h-screen overflow-hidden'>
       <Header /> 
-        {/* <Ai categories={Categories } locations = {location}/>  */}
+        {/* <Ai  />  */}
         <AiSecond />
     </main>
   )

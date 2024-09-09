@@ -3,15 +3,44 @@ import { getEventByAI } from '@/lib/actions/event.actions';
 import { IEvent } from '@/lib/models/event.model';
 import { formatDateTime } from '@/lib/utils';
 import { Location } from 'iconsax-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import CheakOutButton from './CheakOutButton';
 import { IoSendSharp } from "react-icons/io5";
 import Image from 'next/image';
+import { FaMicrophone } from "react-icons/fa";
+import { FaMicrophoneSlash } from "react-icons/fa";
 
 type ExtractedData = {
   category: string | null;
   location: string | null;
 };
+
+interface SpeechRecognition extends EventTarget {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  start(): void;
+  stop(): void;
+  onresult: (event: SpeechRecognitionEvent) => void;
+  onend: () => void;
+}
+
+interface SpeechRecognitionEvent extends Event {
+  resultIndex: number;
+  results: SpeechRecognitionResultList;
+}
+
+interface SpeechRecognitionResultList {
+  [index: number]: SpeechRecognitionResult;
+}
+
+interface SpeechRecognitionResult {
+  [index: number]: SpeechRecognitionAlternative;
+}
+
+interface SpeechRecognitionAlternative {
+  transcript: string;
+}
 
 function useSentenceParser(setEvents: React.Dispatch<React.SetStateAction<IEvent | null | 'not'>>) {
   const [error, setError] = useState<string[]>([]);
@@ -23,7 +52,7 @@ function useSentenceParser(setEvents: React.Dispatch<React.SetStateAction<IEvent
   const parseSentence = async (sentence: string): Promise<ExtractedData> => { 
 
     const trimmedSentence = sentence.trim().toLowerCase();
-    if (['hi', 'hii', 'hello', '', ' '].includes(trimmedSentence)) {
+    if (['hi', 'hii', 'hello', '', ' ' , ' hi what’s up' , 'what’s up'].includes(trimmedSentence)) {
       addError('Hey! How’s it going? Would you like to book a ticket?');
       return { category: null, location: null };
     }
@@ -81,24 +110,92 @@ function AiSecond() {
     setResult(extractedData);
   };
 
+ 
+  const [transcript, setTranscript] = useState<string>('');
+  const [isListening, setIsListening] = useState<boolean>(false);
+  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const handleStart = () => {
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition() as SpeechRecognition;
+
+      recognition.continuous = true;
+      recognition.interimResults = false;
+      recognition.lang = 'en-US';
+
+      recognition.onresult = (event: SpeechRecognitionEvent) => {
+        const current = event.resultIndex;
+        const transcriptText = event.results[current][0].transcript;
+        setTranscript((prevTranscript) => prevTranscript + ' ' + transcriptText);
+      };
+
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+
+      recognition.start();
+      setTranscript('');
+      setIsListening(true);
+    } else {
+      alert('Speech Recognition API is not supported in this browser.');
+    }
+  };
+
+  // const handleStop = () => {
+  //   const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+  //   if (SpeechRecognition) {
+  //     const recognition = new SpeechRecognition() as SpeechRecognition;
+  //     recognition.stop();
+  //     setIsListening(false);
+  //   }
+  // };
+
+  const handleStop = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      setIsListening(false);
+      recognitionRef.current = null; // Clear the reference
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center gap-3 text-white bg-[#13131a] w-full overflow-hidden h-screen">
       <h1 className='text-l max-md:text-sm font-semibold'>
         Book your ticket with <span className='bg-zinc-700 px-2 rounded-xl'>AI</span> just ask a simple question ..
       </h1>
 
-      <form onSubmit={handleParse} className="relative bg-[#0c0c11] w-[350px] rounded-xl max-lg:hj-[84vh] min-h-[90vh] p-4">
+      <div className='relative bg-[#0c0c11] w-[350px] rounded-xl max-lg:hj-[84vh] min-h-[90vh] p-4 '>
+
+      
+
+   <div className=' flex items-center w-full justify-center'>
+   <form onSubmit={handleParse} className=" w-[97%]">
         <div className="flex items-center rounded-xl overflow-hidden">
           <input
             className="p-2 text-sm inshadow h-full py-[10px] outline-none shadow bg-[#ffffff09] w-[95%]"
             name="sentence"
             type="text"
+            defaultValue={transcript}
             placeholder="Enter your prompt"
           />
           <button type="submit" className="px-3 py-2 text-2xl inshadow bg-[#3b83f682] text-white">
             <IoSendSharp />
           </button>
         </div>
+   </form>
+
+  <div className=' bg-blue-400 p-1 h-full ml-1 flex items-center justify-center rounded-full  text-3xl'>
+  {isListening ? (
+        <button onClick={handleStop}>
+          <FaMicrophoneSlash />
+        </button>
+      ) : (
+        <button onClick={handleStart}>
+         <FaMicrophone />
+        </button>
+      )}
+  </div>
+   </div>
 
           {error.length > 0 && (
           <div className=" mt-2 flex flex-col gap-2 ">
@@ -131,7 +228,7 @@ function AiSecond() {
         )}
 
         {events && events !== 'not' && <CheakOutButton event={events} />}
-      </form>
+   </div>
     </div>
   );
 }
