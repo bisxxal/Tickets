@@ -55,7 +55,13 @@
     @apply bg-gray-900;
   }
  
-
+  .logo{
+    background: rgb(17,17,17);
+    background: linear-gradient(90deg, #ffffffb4 18%, #0a73fd 115%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
   @keyframes bounce {
     0% {
         transform: translateY(-15%);

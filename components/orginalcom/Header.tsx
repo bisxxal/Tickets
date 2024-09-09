@@ -11,8 +11,8 @@ function Header() {
     <div className=" w-full h-[60px] items-center bg-[#191b24] text-white flex justify-between px-3">
       <div>
       
-        <Link href={"/"} className=" flex items-center font-semibold text-lg gap-3">
-        <Ticket size="42"  color="#0a73fd" variant="Bulk"/> Tickets
+        <Link href={"/"} className=" logo flex items-center  font-bold text-3xl gap-3">
+        <Ticket size="42"  color="#0a73fd" variant="Bulk"/> Tickets.
          </Link> 
       </div>
 
